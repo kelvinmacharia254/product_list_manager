@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # 3rd party
     'rest_framework',
+    'rest_framework.authtoken',
     'django_extensions',
     'djoser',
     # internals
@@ -125,13 +126,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'users.CustomUser'
 
-# REST_FRAMEWORK = {
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ]
+}
+
+# DJOSER = {
 #
 # }
-
-DJOSER = {
-    "SERIALIZERS": {
-        "user": "users.serializers.CustomUserSerializer",
-        # "user_create": "users.serializers.CustomUserSerializer",
-    }
-}

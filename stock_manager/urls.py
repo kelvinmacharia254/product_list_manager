@@ -21,6 +21,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('stock.urls')),
 
+    # rest_auth_tokens
+    path("auth/", include("users.urls")),
+
     # djoser user management urls
     path('auth/', include("djoser.urls"))
 ]
