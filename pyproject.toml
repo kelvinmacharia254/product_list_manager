@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "drf-recap-generic-view"
+version = "0.1.0"
+description = "a gentel recap of drf using generic views"
+authors = ["'kelvinmacharia254' <'pilotkelvin0@gmail.com'>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+Django = "^5.1.1"
+djangorestframework = "^3.15.2"
+
+[tool.poetry.group.dev.dependencies]
+ipython = "^8.28.0"
+django-extensions = "^3.2.3"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
