@@ -12,8 +12,6 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from datetime import timedelta
 from pathlib import Path
 
-from rest_framework.schemas import openapi
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -47,7 +45,8 @@ INSTALLED_APPS = [
     'drf_spectacular',
     # internals
     "stock.apps.StockConfig",
-    "users.apps.UsersConfig"
+    "users.apps.UsersConfig",
+    "api_docs.apps.ApiDocsConfig",
 ]
 
 MIDDLEWARE = [
