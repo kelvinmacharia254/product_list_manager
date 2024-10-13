@@ -5,7 +5,7 @@ Each product has a name, description, and price.
 
 ## Installation
 1. Clone the repository
-    - `git clone
+    - ```git clone```
 2. Install the required dependencies
       backend
     - `poetry install`
@@ -18,4 +18,13 @@ Each product has a name, description, and price.
     - `python manage.py runserver`
       frontend
     - `npm run dev`
+   
 4. Open your browser and navigate to `http://localhost:3000/`
+
+5. You can now add, update and delete products and more
+
+6. Enjoy! and free free to contribute to the project or share your feedback 
+
+Author: Kelvin Macharia
+
+contact: ```pilotkelvin0@gmail.com```
