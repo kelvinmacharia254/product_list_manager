@@ -7,8 +7,15 @@ Each product has a name, description, and price.
 1. Clone the repository
     - `git clone
 2. Install the required dependencies
+      backend
     - `poetry install`
+      frontend
     - `npm install`
 3. Run the application
-    - `poetry run python manage.py runserver`
+      backend
+    - `poetry shell`
+    - `python manage.py migrate`
+    - `python manage.py runserver`
+      frontend
     - `npm run dev`
+4. Open your browser and navigate to `http://localhost:3000/`
