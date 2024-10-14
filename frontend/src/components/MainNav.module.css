@@ -5,6 +5,18 @@
     padding: 10px;
 }
 
-.nav{
+ul{
+    display: flex;
+    list-style: none;
+    padding: 0;
+}
 
+li a{
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+}
+
+li a:active{
+    background-color: var(--tertiary-color);
 }
