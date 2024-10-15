@@ -43,15 +43,17 @@ INSTALLED_APPS = [
     'django_extensions',
     'djoser',
     'drf_spectacular',
+    'corsheaders',
     # internals
     "stock.apps.StockConfig",
     "users.apps.UsersConfig",
-    "api_docs.apps.ApiDocsConfig",
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    # Add 'CorsMiddleware' above 'CommonMiddleware'
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -130,6 +132,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'users.CustomUser'
 
+# ALLOW CORS
+# CORS_ORIGIN_ALLOW_ALL = True  # suited for development
+CORS_ALLOWED_ORIGINS = [ # suited for production as it allows only the specified origins
+    'http://localhost:3000',
+]
+
 REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
     # Authentication
@@ -141,7 +149,7 @@ REST_FRAMEWORK = {
 
     # Authorization
     "DEFAULT_PERMISSION_CLASSES": [
-        "rest_framework.permissions.IsAuthenticated",
+        "rest_framework.permissions.AllowAny",
     ]
 }
 
