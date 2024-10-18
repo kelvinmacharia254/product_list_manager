@@ -1,22 +1,22 @@
-.header{
+.header {
     display: flex;
     justify-content: space-between;
     background-color: var(--secondary-color);
     padding: 10px;
 }
 
-ul{
+.header ul {
     display: flex;
     list-style: none;
     padding: 0;
 }
 
-li a{
+.header li a {
     text-decoration: none;
     color: white;
     padding: 10px;
 }
 
-li a:active{
+.header li a:active {
     background-color: var(--tertiary-color);
 }
