@@ -1,8 +1,9 @@
 import {Link, useLoaderData} from "react-router-dom";
 
+
 const BACKEND_BASE_URL = import.meta.env.VITE_BACKEND_BASE_URL
-export async function loader (){
-    let apiURL = `${BACKEND_BASE_URL}/api/products`
+export async function loader({params}){
+    let apiURL = `${BACKEND_BASE_URL}/api/product/${params.productID}`
 
     try{
         const response = await fetch(apiURL)
@@ -26,24 +27,19 @@ export async function loader (){
         // handle generic network-related errors like "Failed to fetch"
         throw new Error(error.message)
     }
-}
 
-export default function ProductsList(){
-    const products = useLoaderData()
+}
+export default function ProductDetail() {
+    const product = useLoaderData()
+
     return (
-        <section id="product-list">
-            <h3>Products List</h3>
-            <ul>
-                {products.map((product) => (
-                <li key={product.id}>
-                    <Link to={`/products/${product.id}`}>
-                        <h4>{product.name}</h4>
-                        {/*<p>{product.description}</p>*/}
-                        <p>Ksh {product.price}</p>
-                    </Link>
-                </li>
-                ))}
-            </ul>
+        <section id="product-detail">
+            <div>
+                <h4>{product.name}</h4>
+                {/*<p>{product.description}</p>*/}
+                <p>Price: Ksh {product.price}</p>
+                <span><Link>Edit</Link></span>  |  <span><Link>Delete</Link></span>
+            </div>
         </section>
     )
 }
