@@ -1,6 +1,6 @@
 const BACKEND_BASE_URL = import.meta.env.VITE_BACKEND_BASE_URL
 export async function loader (){
-    let apiURL = `${BACKEND_BASE_URL}/api/product`
+    let apiURL = `${BACKEND_BASE_URL}/api/products`
 
     try{
         const response = await fetch(apiURL)
