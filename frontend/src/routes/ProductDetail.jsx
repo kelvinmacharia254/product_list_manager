@@ -1,4 +1,4 @@
-import {Link, useLoaderData} from "react-router-dom";
+import {Link, useLoaderData, Form} from "react-router-dom";
 
 
 const BACKEND_BASE_URL = import.meta.env.VITE_BACKEND_BASE_URL
@@ -38,7 +38,30 @@ export default function ProductDetail() {
                 <h4>{product.name}</h4>
                 {/*<p>{product.description}</p>*/}
                 <p>Price: Ksh {product.price}</p>
-                <span><Link>Edit</Link></span>  |  <span><Link>Delete</Link></span>
+                <Form method="post">
+                    <button>Edit</button>
+                </Form>
+                 &nbsp;|&nbsp;
+                <Form
+                    method="post"
+                    action="delete"
+                    onSubmit={(event)=>{
+                        // Check if product is available before proceeding
+                        if (!product?.name) {
+                            event.preventDefault();
+                            alert("Product missing, cannot proceed with deletion.");
+                            return;
+                        }
+
+                        // Confirm deletion
+                        const confirmed = confirm(`Are you sure you want to delete the product "${product.name}"?`);
+                        if (!confirmed) {
+                            event.preventDefault();
+                        }
+                    }}
+                >
+                    <button type="submit">Delete</button>
+                </Form>
             </div>
         </section>
     )
