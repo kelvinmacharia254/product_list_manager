@@ -8,19 +8,14 @@ from .serializers import ProductSerializer
 
 
 # Create your views here.
-@extend_schema(
-    description="List and create products",
-    responses={200: ProductSerializer},
-)
+
 class ProductListCreateView(generics.ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
 
 
-@extend_schema(
-    description="Retrieve a specific product",
-    responses={200: ProductSerializer},
-)
-class ProductDetailView(generics.RetrieveAPIView):
+
+class ProductRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+
