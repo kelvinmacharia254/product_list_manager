@@ -1,4 +1,6 @@
-import {Link, useLoaderData} from "react-router-dom";
+import {Link, useLoaderData, useLocation} from "react-router-dom";
+import {useEffect, useState} from "react";
+import Notification from "../components/Notification.jsx";
 
 const BACKEND_BASE_URL = import.meta.env.VITE_BACKEND_BASE_URL
 export async function loader (){
@@ -30,8 +32,27 @@ export async function loader (){
 
 export default function ProductsList(){
     const products = useLoaderData()
+    // Use the query param 'deleted' to display to user that a product was successfully deleted
+    const location = useLocation() // extract location
+    //  convert to search params
+    const searchParams = new URLSearchParams(location.search)
+    const deletedParamQuery = searchParams.get("deleted")
+
+    const [fade, setFade] = useState(false)
+
+    // manage visibility of the notification
+    useEffect(()=>{
+        if(deletedParamQuery){
+            setFade(false)
+            const timer = setTimeout(setFade(true), 5000)
+
+            return () => clearTimeout(timer)
+        }
+    },[deletedParamQuery])
+
     return (
         <section id="product-list">
+            {deletedParamQuery && (<Notification className={fade}/>)}
             <h3>Products List</h3>
             <ul>
                 {products.map((product) => (

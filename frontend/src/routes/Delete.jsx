@@ -36,7 +36,7 @@ export async function Delete({ params }) {
         }
 
         // Redirect to homepage after successful deletion
-        return redirect("/");
+        return redirect("/products?deleted=true");
 
     } catch (error) {
         // Log error for better debugging

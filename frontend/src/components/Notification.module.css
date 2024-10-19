@@ -1,0 +1,13 @@
+.notification {
+    background-color: var(--tertiary-color); /* Green background */
+    color: var(--secondary-color);
+    padding: 15px;
+    text-align: center;
+    position: relative;
+    opacity: 1;
+    transition:opacity 5s ease;
+}
+
+.notification.fade{
+    opacity: 0;
+}
