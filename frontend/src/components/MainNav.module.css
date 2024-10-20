@@ -11,12 +11,13 @@
     padding: 0;
 }
 
-.header li a {
+.header a {
     text-decoration: none;
     color: white;
     padding: 10px;
 }
 
-.header li a:active {
-    background-color: var(--tertiary-color);
+.header a:active,
+.header a:hover {
+    color: var(--tertiary-color);
 }

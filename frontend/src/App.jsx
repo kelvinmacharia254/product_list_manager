@@ -14,7 +14,8 @@ function App() {
             errorElement: <ErrorElement/>,
             children: [
             {
-                path: "/products", element: <ProductsList />,
+                index: true,
+                element: <ProductsList />,
              loader: productsLoader,
             },
             {   path: "/product/:productID", element: <ProductDetail />,
