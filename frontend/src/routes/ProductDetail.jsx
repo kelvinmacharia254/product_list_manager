@@ -46,13 +46,6 @@ export default function ProductDetail() {
                     method="post"
                     action="delete"
                     onSubmit={(event)=>{
-                        // Check if product is available before proceeding
-                        if (!product?.name) {
-                            event.preventDefault();
-                            alert("Product missing, cannot proceed with deletion.");
-                            return;
-                        }
-
                         // Confirm deletion
                         const confirmed = confirm(`Are you sure you want to delete the product "${product.name}"?`);
                         if (!confirmed) {

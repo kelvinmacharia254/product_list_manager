@@ -1,27 +1,24 @@
 import ProductForm from "../components/ProductForm.jsx";
-import {redirect, useLoaderData} from "react-router-dom";
 import ProductLayout from "../layouts/ProductLayout.jsx";
+import {redirect} from "react-router-dom";
+
 const BACKEND_BASE_URL = import.meta.env.VITE_BACKEND_BASE_URL;
-export async function action({ params, request }) {
-    const apiURL = `${BACKEND_BASE_URL}/api/product/${params.productID}`;
-    console.log(apiURL)
+export async function action({ request }) {
+    const apiURL = `${BACKEND_BASE_URL}/api/products/`;
     try {
         const formData = await request.formData();
-        console.log(formData)
-        const updatedProduct = {
+        const newProduct = {
             name: formData.get("name"),
             description: formData.get("description"),
             price: formData.get("price"),
         };
-
         const response = await fetch(apiURL, {
-            method: "PATCH",
+            method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(updatedProduct),
+            body: JSON.stringify(newProduct),
         });
-
         if (!response.ok) {
             if (response.status === 404) {
                 throw new Error(`Location couldn't be found [${response.status}]`);
@@ -33,18 +30,16 @@ export async function action({ params, request }) {
                 throw new Error("Server errors");
             }
         }
-
-        return redirect(`/product/${params.productID}`);
+        return redirect("/");
 
     } catch (error) {
         throw new Error(error.message);
     }
 }
-export default function ProductEdit(){
-    const product = useLoaderData()
+export default function ProductAdd(){
     return(
         <ProductLayout>
-            <ProductForm product={product} method="patch"/>
+            <ProductForm method ="post"/>
         </ProductLayout>
     )
 }

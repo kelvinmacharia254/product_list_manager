@@ -2,10 +2,10 @@ import { useState } from "react";
 import { Form } from "react-router-dom";
 import classes from "./EditForm.module.css";
 
-export default function EditForm({ product, method}) {
-    const [name, setName] = useState(product.name);
-    const [description, setDescription] = useState(product.description);
-    const [price, setPrice] = useState(product.price);
+export default function ProductForm({ product = {}, method}) {
+    const [name, setName] = useState(product.name || "");
+    const [description, setDescription] = useState(product.description || "");
+    const [price, setPrice] = useState(product.price || "");
 
     return (
         <div className={classes.formwrapper}>

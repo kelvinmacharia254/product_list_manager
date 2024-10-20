@@ -8,7 +8,11 @@ export default function MainNav(){
                 <h2>Product Manager</h2>
             </Link>
             <nav className={classes.nav}>
-
+                <ul>
+                    <li>
+                        <Link to="/product/add"> + Add New Product</Link>
+                    </li>
+                </ul>
             </nav>
         </header>
     )

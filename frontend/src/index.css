@@ -103,11 +103,4 @@ main {
     font-weight: bold;
 }
 
-/* Product detail edit  */
-#product-edit{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 80vh;
-}
 
