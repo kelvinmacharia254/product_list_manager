@@ -36,23 +36,23 @@ export default function ProductsList(){
     const location = useLocation() // extract location
     //  convert to search params
     const searchParams = new URLSearchParams(location.search)
-    const deletedParamQuery = searchParams.get("deleted")
+    const productName = searchParams.get("productName")
 
     const [fade, setFade] = useState(false)
 
     // manage visibility of the notification
     useEffect(()=>{
-        if(deletedParamQuery){
+        if(productName){
             setFade(false)
             const timer = setTimeout(setFade(true), 5000)
 
             return () => clearTimeout(timer)
         }
-    },[deletedParamQuery])
+    },[productName])
 
     return (
         <section id="product-list">
-            {deletedParamQuery && (<Notification className={fade}/>)}
+            {productName && (<Notification className={fade} message={`${productName} was deleted successful.`}/>)}
             <h3>Products List</h3>
             <ul>
                 {products.map((product) => (
