@@ -6,6 +6,7 @@ import {loader as productsLoader} from "./routes/ProductsList.jsx";
 import ErrorElement from "./ErrorElement.jsx";
 import ProductDetail, {loader as productLoader} from "./routes/ProductDetail.jsx";
 import {Delete as deleteAction} from "./routes/Delete.jsx"
+import ProductEdit, {action as editAction} from "./routes/ProductEdit.jsx";
 function App() {
       const router = createBrowserRouter([
         {
@@ -21,7 +22,12 @@ function App() {
             },
             {   path: "/product/:productID/delete",
                 action: deleteAction,
-            }
+            },
+            {
+                path:"/product/:productID/edit", element:<ProductEdit/>,
+                loader: productLoader,
+                action: editAction,
+            },
         ]
         },
       ]);

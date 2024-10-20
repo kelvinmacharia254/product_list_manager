@@ -59,7 +59,7 @@ export default function ProductsList(){
                 <li key={product.id}>
                     <Link to={`/product/${product.id}`}>
                         <h4>{product.name}</h4>
-                        {/*<p>{product.description}</p>*/}
+                        <p>{product.description}</p>
                         <p>Ksh {product.price}</p>
                     </Link>
                 </li>

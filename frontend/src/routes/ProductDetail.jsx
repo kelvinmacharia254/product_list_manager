@@ -1,4 +1,4 @@
-import {Link, useLoaderData, Form} from "react-router-dom";
+import {useLoaderData, Form} from "react-router-dom";
 
 
 const BACKEND_BASE_URL = import.meta.env.VITE_BACKEND_BASE_URL
@@ -36,9 +36,9 @@ export default function ProductDetail() {
         <section id="product-detail">
             <div>
                 <h4>{product.name}</h4>
-                {/*<p>{product.description}</p>*/}
+                <p>{product.description}</p>
                 <p>Price: Ksh {product.price}</p>
-                <Form method="post">
+                <Form action='edit'>
                     <button>Edit</button>
                 </Form>
                  &nbsp;|&nbsp;
