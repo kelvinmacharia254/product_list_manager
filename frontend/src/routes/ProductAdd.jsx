@@ -30,7 +30,7 @@ export async function action({ request }) {
                 throw new Error("Server errors");
             }
         }
-        return redirect("/");
+        return redirect(`/?newProduct=${encodeURIComponent(newProduct.name)}`);
 
     } catch (error) {
         throw new Error(error.message);

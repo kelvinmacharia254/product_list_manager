@@ -33,11 +33,13 @@ export default function ProductsList() {
     const products = useLoaderData();
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
-    const productName = searchParams.get("productName");
+    const productName = searchParams.get("productName")
+    const newProduct = searchParams.get("newProduct")
 
     return (
         <section id="product-list">
             {productName && (<Notification message={`${productName} was deleted successfully.`}/>)}
+            {newProduct && (<Notification message={`${newProduct} was added successfully.`}/>)}
             <h3>Products List</h3>
             <ul>
                 {products.map((product) => (
