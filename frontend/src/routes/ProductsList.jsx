@@ -1,12 +1,21 @@
 // src/routes/ProductsList.jsx
 import { Link, useLoaderData, useLocation } from "react-router-dom";
 import Notification from "../components/Notification.jsx";
+import {getToken} from "../utils/auth.jsx";
 
 export async function loader(BACKEND_BASE_URL) {
     let apiURL = `${BACKEND_BASE_URL}/api/products`;
-
+    const token = getToken()
     try {
-        const response = await fetch(apiURL);
+        const response = await fetch(apiURL,
+            {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`
+                }
+            });
+
         if (!response.ok) {
             if (response.status === 404) {
                 throw new Error(`Location couldn't be found [${response.status}]`);

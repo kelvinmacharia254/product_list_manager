@@ -10,6 +10,7 @@ import ProductEdit, {action as productEditAction} from "./routes/ProductEdit.jsx
 import ProductAdd, {action as productAddAction} from "./routes/ProductAdd.jsx";
 
 import {useAppContext} from "./context/AppContext.jsx";
+import Authentication,{action as authAction} from "./routes/Authentication.jsx";
 
 function App() {
       const {BACKEND_BASE_URL} = useAppContext();
@@ -39,6 +40,10 @@ function App() {
             {   path: "/product/:productID/delete",
                 action:({ params})=> ProductDeleteAction({ params, BACKEND_BASE_URL }),
             },
+            {
+                path: "/auth", element: <Authentication/>,
+                action: ({request})=>authAction({request, BACKEND_BASE_URL}),
+            }
         ]
         },
       ]);

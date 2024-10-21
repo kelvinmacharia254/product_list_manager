@@ -1,11 +1,19 @@
 import {useLoaderData, Form} from "react-router-dom";
+import {getToken} from "../utils/auth.jsx";
 
 export async function loader({params, BACKEND_BASE_URL}){
     console.log(params, BACKEND_BASE_URL)
     let apiURL = `${BACKEND_BASE_URL}/api/product/${params.productID}`
-
+    const token = getToken()
     try{
-        const response = await fetch(apiURL)
+        const response = await fetch(apiURL,
+            {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`
+                }
+            });
         // Check for HTTP errors like 404, 401, etc.
         if (!response.ok) {
             if (response.status === 404) {

@@ -12,6 +12,9 @@ export default function MainNav(){
                     <li>
                         <Link to="/product/add"> + Add New Product</Link>
                     </li>
+                    <li>
+                        <Link to="/auth">Login</Link>
+                    </li>
                 </ul>
             </nav>
         </header>

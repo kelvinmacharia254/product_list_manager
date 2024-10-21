@@ -1,5 +1,5 @@
 import ProductForm from "../components/ProductForm.jsx";
-import ProductLayout from "../layouts/ProductLayout.jsx";
+import FormLayout from "../layouts/FormLayout.jsx";
 import {redirect} from "react-router-dom";
 
 export async function action({ request, BACKEND_BASE_URL }) {
@@ -37,8 +37,8 @@ export async function action({ request, BACKEND_BASE_URL }) {
 }
 export default function ProductAdd(){
     return(
-        <ProductLayout>
+        <FormLayout>
             <ProductForm method ="post"/>
-        </ProductLayout>
+        </FormLayout>
     )
 }

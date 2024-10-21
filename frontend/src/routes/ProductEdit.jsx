@@ -1,10 +1,11 @@
 import ProductForm from "../components/ProductForm.jsx";
 import {redirect, useLoaderData} from "react-router-dom";
-import ProductLayout from "../layouts/ProductLayout.jsx";
+import FormLayout from "../layouts/FormLayout.jsx";
+import {getToken} from "../utils/auth.jsx";
 
 export async function action({ params, request, BACKEND_BASE_URL }) {
     const apiURL = `${BACKEND_BASE_URL}/api/product/${params.productID}`;
-    console.log(apiURL)
+    const token = getToken();
     try {
         const formData = await request.formData();
         console.log(formData)
@@ -18,6 +19,7 @@ export async function action({ params, request, BACKEND_BASE_URL }) {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
             },
             body: JSON.stringify(updatedProduct),
         });
@@ -43,8 +45,8 @@ export async function action({ params, request, BACKEND_BASE_URL }) {
 export default function ProductEdit(){
     const product = useLoaderData()
     return(
-        <ProductLayout>
+        <FormLayout>
             <ProductForm product={product} method="patch"/>
-        </ProductLayout>
+        </FormLayout>
     )
 }

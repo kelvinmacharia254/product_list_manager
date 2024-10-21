@@ -1,11 +1,19 @@
 import { redirect } from "react-router-dom";
+import {getToken} from "../utils/auth.jsx";
 
 export async function Delete({ params, BACKEND_BASE_URL }) {
     const apiURL = `${BACKEND_BASE_URL}/api/product/${params.productID}`;
-
+    const token = getToken();
     try {
         // First, fetch the product details to get the name before deletion
-        const productResponse = await fetch(apiURL);
+        const productResponse = await fetch(apiURL,
+            {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`
+                }
+            });
         if (!productResponse.ok) {
             throw new Error(`Failed to fetch product details: ${productResponse.status}`);
         }
@@ -16,6 +24,10 @@ export async function Delete({ params, BACKEND_BASE_URL }) {
         // Now, proceed to delete the product
         const deleteResponse = await fetch(apiURL, {
             method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            }
         });
 
         // Check for HTTP response errors
@@ -43,6 +55,7 @@ export async function Delete({ params, BACKEND_BASE_URL }) {
         }
 
         // Redirect to homepage after successful deletion with product name as a query parameter
+        // Ulitilize the productName on the notification component in ProductsList.jsx
         return redirect(`/?productName=${encodeURIComponent(productName)}`);
 
     } catch (error) {

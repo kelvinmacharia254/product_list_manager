@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Form } from "react-router-dom";
-import classes from "./EditForm.module.css";
+import classes from "./Form.module.css";
 
 export default function ProductForm({ product = {}, method}) {
     const [name, setName] = useState(product.name || "");
