@@ -1,8 +1,7 @@
 import {useLoaderData, Form} from "react-router-dom";
 
-
-const BACKEND_BASE_URL = import.meta.env.VITE_BACKEND_BASE_URL
-export async function loader({params}){
+export async function loader({params, BACKEND_BASE_URL}){
+    console.log(params, BACKEND_BASE_URL)
     let apiURL = `${BACKEND_BASE_URL}/api/product/${params.productID}`
 
     try{

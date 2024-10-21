@@ -1,8 +1,6 @@
 import { redirect } from "react-router-dom";
 
-const BACKEND_BASE_URL = import.meta.env.VITE_BACKEND_BASE_URL;
-
-export async function Delete({ params }) {
+export async function Delete({ params, BACKEND_BASE_URL }) {
     const apiURL = `${BACKEND_BASE_URL}/api/product/${params.productID}`;
 
     try {

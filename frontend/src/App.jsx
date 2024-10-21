@@ -8,7 +8,13 @@ import ProductDetail, {loader as productLoader} from "./routes/ProductDetail.jsx
 import {Delete as ProductDeleteAction} from "./routes/Delete.jsx"
 import ProductEdit, {action as productEditAction} from "./routes/ProductEdit.jsx";
 import ProductAdd, {action as productAddAction} from "./routes/ProductAdd.jsx";
+
+import {useAppContext} from "./context/AppContext.jsx";
+
 function App() {
+      const {BACKEND_BASE_URL} = useAppContext();
+      // console.log(BACKEND_BASE_URL)
+
       const router = createBrowserRouter([
         {
             path: "/", element: <Root />,
@@ -17,27 +23,27 @@ function App() {
             {
                 index: true,
                 element: <ProductsList />,
-             loader: productsLoader,
+             loader: () => productsLoader(BACKEND_BASE_URL),
             },
             {   path: "/product/:productID", element: <ProductDetail />,
-                loader: productLoader
+                loader: ({params}) => productLoader({params, BACKEND_BASE_URL})
             },
             {   path: "/product/add", element: <ProductAdd />,
-                action: productAddAction,
+                action: ({request})=>productAddAction({request, BACKEND_BASE_URL}),
             },
             {
                 path:"/product/:productID/edit", element:<ProductEdit/>,
-                loader: productLoader,
-                action: productEditAction,
+                loader: ({params}) => productLoader({params, BACKEND_BASE_URL}),
+                action: ({ params, request})=> productEditAction({ params, request, BACKEND_BASE_URL }),
             },
             {   path: "/product/:productID/delete",
-                action: ProductDeleteAction,
+                action:({ params})=> ProductDeleteAction({ params, BACKEND_BASE_URL }),
             },
         ]
         },
       ]);
 
-  return <RouterProvider router={router} />;
+  return <RouterProvider router={router} />
 }
 
 export default App

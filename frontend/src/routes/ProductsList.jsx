@@ -2,9 +2,7 @@
 import { Link, useLoaderData, useLocation } from "react-router-dom";
 import Notification from "../components/Notification.jsx";
 
-const BACKEND_BASE_URL = import.meta.env.VITE_BACKEND_BASE_URL;
-
-export async function loader() {
+export async function loader(BACKEND_BASE_URL) {
     let apiURL = `${BACKEND_BASE_URL}/api/products`;
 
     try {

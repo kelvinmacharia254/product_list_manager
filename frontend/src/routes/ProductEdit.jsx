@@ -1,8 +1,8 @@
 import ProductForm from "../components/ProductForm.jsx";
 import {redirect, useLoaderData} from "react-router-dom";
 import ProductLayout from "../layouts/ProductLayout.jsx";
-const BACKEND_BASE_URL = import.meta.env.VITE_BACKEND_BASE_URL;
-export async function action({ params, request }) {
+
+export async function action({ params, request, BACKEND_BASE_URL }) {
     const apiURL = `${BACKEND_BASE_URL}/api/product/${params.productID}`;
     console.log(apiURL)
     try {
